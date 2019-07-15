@@ -57,21 +57,21 @@ class Client
     {
         $response = $this->call($module, 'searchRecords', array('criteria' => $criteria, 'newFormat' => 2));
 
-        return $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
+        return $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
     }
 
     public function insertRecords($module, $data)
     {
         $response = $this->call($module, 'insertRecords', array('newFormat' => 1, 'version' => 4), $data);
 
-        return $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors));
+        return $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors));
     }
 
     public function updateRecords($module, $data)
     {
         $response = $this->call($module, 'updateRecords', array('newFormat' => 1, 'version' => 4), $data);
 
-        return $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors));
+        return $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors));
     }
 
     public function getFields($module)
@@ -85,7 +85,7 @@ class Client
     {
         $response = $this->call($module, 'deleteRecords', array('id' => $id));
 
-        $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors));
+        $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors));
     }
 
     public function getLastErrors()
@@ -97,7 +97,7 @@ class Client
     {
         $response = $this->call($module, 'getRecordById', array('newFormat' => 2, 'version' => 2, 'idlist' => implode(';', $ids)));
 
-        return $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
+        return $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
     }
 
     public function getRecords($module, $page = 1)
@@ -112,6 +112,6 @@ class Client
             'newFormat' => 2,
         ));
 
-        return $this->serializer->deserialize($response, null, 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
+        return $this->serializer->deserialize($response, '', 'zoho', array('errors' => &$this->lastErrors, 'module' => $module));
     }
 }
